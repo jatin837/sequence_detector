@@ -1,5 +1,5 @@
 presentation: ./src/presentation.tex
 	pdflatex ./src/presentation.tex
-
+	mv ./presentation* ./target
 clean:
-	rm presentation*
+	rm ./target/presentation*
