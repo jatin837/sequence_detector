@@ -1,4 +1,4 @@
-\documentclass[10pt]{beamer}
+\documentclass[xcolor=table]{beamer}
 \usetheme{Madrid}
 \usecolortheme{beaver}
 \usepackage{tikz}
@@ -48,16 +48,23 @@
       \frametitle{State Table}
       Generating State Table with outputs
       \begin{table}[]
-        \begin{tabular}{|l|l|l|l|l|}
-        \hline
-        Present State & \multicolumn{4}{l|}{Next State / Output}                \\ \hline
-                      & \multicolumn{2}{l|}{X = 0} & \multicolumn{2}{l|}{X = 1} \\ \hline
-        A             & \multicolumn{2}{l|}{A/0}   & \multicolumn{2}{l|}{B/0}   \\ \hline
-        B             & \multicolumn{2}{l|}{A/0}   & \multicolumn{2}{l|}{C/0}   \\ \hline
-        C             & \multicolumn{2}{l|}{D/0}   & \multicolumn{2}{l|}{C/0}   \\ \hline
-        D             & \multicolumn{2}{l|}{A/0}   & \multicolumn{2}{l|}{E/0}   \\ \hline
-        E             & \multicolumn{2}{l|}{A/0}   & \multicolumn{2}{l|}{C/1}   \\ \hline
-        \end{tabular}
-        \end{table}
-    }
+\begin{tabular}{|c|c|l|c|l|}
+\hline
+\rowcolor[HTML]{FFCCC9} 
+Present State & \multicolumn{4}{c|}{\cellcolor[HTML]{FFCCC9}Next State / Output}                                        \\ \hline
+\rowcolor[HTML]{FFCCC9} 
+              & \multicolumn{2}{c|}{\cellcolor[HTML]{FFCCC9}X = 0} & \multicolumn{2}{c|}{\cellcolor[HTML]{FFCCC9}X = 1} \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+A             & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}A/0}   & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}B/0}   \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+B             & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}A/0}   & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}C/0}   \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+C             & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}D/0}   & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}C/0}   \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+D             & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}A/0}   & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}E/0}   \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+E             & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}A/0}   & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}C/1}   \\ \hline
+\end{tabular}
+\end{table}
+  }
 \end{document}
