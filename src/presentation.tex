@@ -29,22 +29,18 @@
       \end{itemize}
     }
   \frame{
-        \frametitle{Simple Finite State Machine}
-
-        \begin{figure}[ht] % ’ht’ tells LaTeX to place the figure ’here’ or at the top of the page
-          \begin{tikzpicture}
-            % tikz code goes here
-            \node[state, initial, accepting] (1) {$1$};
-            \node[state, below left of=1] (2) {$2$};
-            \node[state, right of=2] (3) {$3$};
-            \draw (1) edge[above] node{$b$} (2)
-            (1) edge[below, bend right, left=0.3] node{$\epsilon$} (3)
-            (2) edge[loop left] node{$a$} (2)
-            (2) edge[below] node{$a, b$} (3)
-            (3) edge[above, bend right, right=0.3] node{$a$} (1);
-          \end{tikzpicture}
-          \caption{Caption of the FSM}
-          \label{fig:my_label}
-        \end{figure}
+    \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto] 
+         \node[state,initial] (q_0)   {$q_0$}; 
+            \node[state] (q_1) [above right=of q_0] {$q_1$}; 
+               \node[state] (q_2) [below right=of q_0] {$q_2$}; 
+                  \node[state,accepting](q_3) [below right=of q_1] {$q_3$};
+                      \path[->] 
+                          (q_0) edge  node {0} (q_1)
+                                    edge  node [swap] {1} (q_2)
+                                        (q_1) edge  node  {1} (q_3)
+                                                  edge [loop above] node {0} ()
+                                                      (q_2) edge  node [swap] {0} (q_3) 
+                                                                edge [loop below] node {1} ();
+    \end{tikzpicture}
     }
 \end{document}
