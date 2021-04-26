@@ -1,207 +1,72 @@
-module sequence_detector(rst,clk,ip,op);
-
-	output reg op;
- 	input clk, rst, ip;
-
-	 reg [2:0] state;
-	 reg [2:0] next_state;
-
-	 parameter [2:0] s0=3'b000;
-	 parameter [2:0] s1=3'b001;
-	 parameter [2:0] s2=3'b010;
-	 parameter [2:0] s3=3'b011;
-	 parameter [2:0] s4=3'b100;
-	 parameter [2:0] s5=3'b101;
-
-	 always @(posedge clk, posedge rst)
-	 begin
-		if (rst)
-   			state=s0;
-  		else
-   			state=next_state;
-	 end
-
-	 always @(state, next_state)
-	 begin
-	 	case(state)
-		s0:
-			if (ip)
-   			begin
-    				next_state=s1;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s0;
-    				op=1'b0;
-   			end
-  
-  		s1:
-   			if (ip)
-   			begin
-    				next_state=s1;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s2;
-    				op=1'b0;
-   			end
-
-  		s2:
-   			if (ip)
-   			begin
-    				next_state=s3;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s0;
-    				op=1'b0;
-   			end
-  
-  		s3:
-   			if (ip)
-   			begin
-    				next_state=s4;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s2;
-    				op=1'b0;
-   			end
-
-  		s4:
-   			if (ip)
-   			begin 
-    				next_state=s1;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s5;
-    				op=1'b0;
-   			end
-  
-  		s5:
-   			if (ip)
-   			begin
-    				next_state=s1;
-    				op=1'b1;
-   			end
-   			else
-   			begin
-    				next_state=s0;
-    				op=1'b0;
-   			end
-
-  		default:
-   			begin
-           			next_state=s0;
-           			op=1'b0;module sequence_detector(rst,clk,ip,op);
-
-	output reg op;
- 	input clk, rst, ip;
-
-	 reg [2:0] state;
-	 reg [2:0] next_state;
-
-	 parameter [2:0] s0=3'b000;
-	 parameter [2:0] s1=3'b001;
-	 parameter [2:0] s2=3'b010;
-	 parameter [2:0] s3=3'b011;
-	 parameter [2:0] s4=3'b100;
-	 parameter [2:0] s5=3'b101;
-
-	 always @(posedge clk, posedge rst)
-	 begin
-		if (rst)
-   			state=s0;
-  		else
-   			state=next_state;
-	 end
-
-	 always @(state, next_state)
-	 begin
-	 	case(state)
-		s0:
-			if (ip)
-   			begin
-    				next_state=s1;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s0;
-    				op=1'b0;
-   			end
-  
-  		s1:
-   			if (ip)
-   			begin
-    				next_state=s1;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s2;
-    				op=1'b0;
-   			end
-
-  		s2:
-   			if (ip)
-   			begin
-    				next_state=s3;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s0;
-    				op=1'b0;
-   			end
-  
-  		s3:
-   			if (ip)
-   			begin
-    				next_state=s4;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s2;
-    				op=1'b0;
-   			end
-
-  		s4:
-   			if (ip)
-   			begin 
-    				next_state=s1;
-    				op=1'b0;
-   			end
-   			else
-   			begin
-    				next_state=s5;
-    				op=1'b0;
-   			end
-  
-  		s5:
-   			if (ip)
-   			begin
-    				next_state=s1;
-    				op=1'b1;
-   			end
-   			else
-   			begin
-    				next_state=s0;
-    				op=1'b0;
-   			end
-
-  		default:
-   			begin
-           			next_state=s0;
-           			op=1'b0;
-   			end
-  		endcase
- 	end
+module Sequence_Detector_MOORE_Verilog(sequence_in,clock,reset,detector_out
+    );
+input clock; // clock signal
+input reset; // reset input
+input sequence_in; // binary input
+output reg detector_out; // output of the sequence detector
+parameter  Zero=3'b000, // "Zero" State
+  One=3'b001, // "One" State
+  OneZero=3'b011, // "OneZero" State
+  OneZeroOne=3'b010, // "OnceZeroOne" State
+  OneZeroOneOne=3'b110;// "OneZeroOneOne" State
+reg [2:0] current_state, next_state; // current state and next state
+// sequential memory of the Moore FSM
+always @(posedge clock, posedge reset)
+begin
+ if(reset==1) 
+ current_state <= Zero;// when reset=1, reset the state of the FSM to "Zero" State
+ else
+ current_state <= next_state; // otherwise, next state
+end 
+// combinational logic of the Moore FSM
+// to determine next state 
+always @(current_state,sequence_in)
+begin
+ case(current_state) 
+ Zero:begin
+  if(sequence_in==1)
+   next_state = One;
+  else
+   next_state = Zero;
+ end
+ One:begin
+  if(sequence_in==0)
+   next_state = OneZero;
+  else
+   next_state = One;
+ end
+ OneZero:begin
+  if(sequence_in==0)
+   next_state = Zero;
+  else
+   next_state = OneZeroOne;
+ end 
+ OneZeroOne:begin
+  if(sequence_in==0)
+   next_state = OneZero;
+  else
+   next_state = OneZeroOneOne;
+ end
+ OneZeroOneOne:begin
+  if(sequence_in==0)
+   next_state = OneZero;
+  else
+   next_state = One;
+ end
+ default:next_state = Zero;
+ endcase
+end
+// combinational logic to determine the output
+// of the Moore FSM, output only depends on current state
+always @(current_state)
+begin 
+ case(current_state) 
+ Zero:   detector_out = 0;
+ One:   detector_out = 0;
+ OneZero:  detector_out = 0;
+ OneZeroOne:  detector_out = 0;
+ OneZeroOneOne:  detector_out = 1;
+ default:  detector_out = 0;
+ endcase
+end 
 endmodule
