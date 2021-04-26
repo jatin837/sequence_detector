@@ -39,8 +39,7 @@ module tb_Sequence_Detector_Moore_FSM_Verilog;
   sequence_in = 1; 
   #20;
   sequence_in = 0;  
-  // Add stimulus here
-
+  $finish;
  end
       
 endmodule
