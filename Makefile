@@ -10,4 +10,4 @@ clean:
 
 code: $(CODEDIR)sequence_detector.v $(CODEDIR)sequence_detector_tb.v
 	iverilog -o $(TARGETDIR)sequence_detector $(CODEDIR)sequence_detector.v $(CODEDIR)sequence_detector_tb.v
-	vvp $(TARGETDIR)/sequence_detector
+	vvp $(TARGETDIR)sequence_detector

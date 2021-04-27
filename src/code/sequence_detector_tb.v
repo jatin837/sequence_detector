@@ -16,10 +16,13 @@ module tb_Sequence_Detector_Moore_FSM_Verilog;
   .reset(reset), 
   .detector_out(detector_out)
  );
+integer i;
  initial begin
- clock = 0;
- forever #5 clock = ~clock;
- end 
+    clock = 0;
+    for (i = 0; i <= 40; i = i + 1)
+        #5 clock = ~clock;
+ end
+
  initial begin
   // Initialize Inputs
   sequence_in = 0;
@@ -39,7 +42,14 @@ module tb_Sequence_Detector_Moore_FSM_Verilog;
   sequence_in = 1; 
   #20;
   sequence_in = 0;  
-  $finish;
+  #20;
  end
-      
+ initial begin
+     $monitor("At time = %t, Detector = %d\n", $time, detector_out);
+ end
+ initial begin
+     $dumpfile("res_wave.vcd");
+     $dumpvars(0, tb_Sequence_Detector_Moore_FSM_Verilog);
+ end
+    
 endmodule
