@@ -1,13 +1,22 @@
-CODEDIR=src/code/
-TARGETDIR=target/
+SRC=src/
+BUILD=target/
+VCC=iverilog
+LATEXCC=pdflatex
+CODE=code/
+
+presentation: $(SRC)presentation.tex
+	$(LATEXCC) $(SRC)presentation.tex
+	mv ./presentation* $(BUILD)
+
+code: $(SRC)$(CODE)sequence_detector.v $(SRC)$(CODE)sequence_detector_tb.v
+	$(VCC) -o $(BUILD)sequence_detector $(SRC)$(CODE)sequence_detector.v $(SRC)$(CODE)sequence_detector_tb.v
+
+review: code
+	vvp $(BUILD)sequence_detector
+	mv ./*.vcd $(BUILD)
+	gtkwave $(BUILD)*.vcd
 
 
-presentation: ./src/presentation.tex
-	pdflatex ./src/presentation.tex
-	mv ./presentation* ./target
 clean:
 	rm ./target/*
 
-code: $(CODEDIR)sequence_detector.v $(CODEDIR)sequence_detector_tb.v
-	iverilog -o $(TARGETDIR)sequence_detector $(CODEDIR)sequence_detector.v $(CODEDIR)sequence_detector_tb.v
-	vvp $(TARGETDIR)sequence_detector
