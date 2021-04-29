@@ -1,20 +1,19 @@
-module Sequence_Detector_MOORE_Verilog(sequence_in,clock,reset,detector_out
+module sequence_detector_1011(sequence_in,clock,reset,detector_out
     );
 input clock; // clock signal
 input reset; // reset input
 input sequence_in; // binary input
 output reg detector_out; // output of the sequence detector
-parameter  Zero=3'b000, // "Zero" State
-  One=3'b001, // "One" State
-  OneZero=3'b011, // "OneZero" State
-  OneZeroOne=3'b010, // "OnceZeroOne" State
-  OneZeroOneOne=3'b110;// "OneZeroOneOne" State
+parameter  A=3'b000, // "Zero" State
+  B=3'b001, // "One" State
+  C=3'b011, // "OneZero" State
+  D=3'b010; // "OnceZeroOne" State
 reg [2:0] current_state, next_state; // current state and next state
 // sequential memory of the Moore FSM
 always @(posedge clock, posedge reset)
 begin
  if(reset==1) 
- current_state <= Zero;// when reset=1, reset the state of the FSM to "Zero" State
+ current_state <= A;// when reset=1, reset the state of the FSM to "Zero" State
  else
  current_state <= next_state; // otherwise, next state
 end 
@@ -23,50 +22,56 @@ end
 always @(current_state,sequence_in)
 begin
  case(current_state) 
- Zero:begin
+ A:begin
   if(sequence_in==1)
-   next_state = One;
+  begin
+   next_state = B;
+   detector_out = 0;
+  end
   else
-   next_state = Zero;
+  begin
+   detector_out = 0;
+   next_state = A;
+  end
  end
- One:begin
+ B:begin
   if(sequence_in==0)
-   next_state = OneZero;
+  begin
+   next_state = C;
+   detector_out = 0;
+  end
   else
-   next_state = One;
+  begin
+   next_state = B;
+   detector_out = 0;
+  end
  end
- OneZero:begin
+ C:begin
   if(sequence_in==0)
-   next_state = Zero;
+  begin
+   next_state = A;
+   detector_out = 0;
+  end
   else
-   next_state = OneZeroOne;
+  begin
+   next_state = D;
+   detector_out = 0;
+  end
  end 
- OneZeroOne:begin
+ D:begin
   if(sequence_in==0)
-   next_state = OneZero;
+  begin
+   next_state = C;
+   detector_out = 0;
+  end
   else
-   next_state = OneZeroOneOne;
+  begin
+   next_state = B;
+   detector_out = 1;
+  end
  end
- OneZeroOneOne:begin
-  if(sequence_in==0)
-   next_state = OneZero;
-  else
-   next_state = One;
- end
- default:next_state = Zero;
  endcase
 end
 // combinational logic to determine the output
 // of the Moore FSM, output only depends on current state
-always @(current_state)
-begin 
- case(current_state) 
- Zero:   detector_out = 0;
- One:   detector_out = 0;
- OneZero:  detector_out = 0;
- OneZeroOne:  detector_out = 0;
- OneZeroOneOne:  detector_out = 1;
- default:  detector_out = 0;
- endcase
-end 
 endmodule
