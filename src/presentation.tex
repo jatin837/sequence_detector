@@ -1,8 +1,18 @@
 \documentclass[xcolor=table]{beamer}
 \usetheme{Madrid}
 \usecolortheme{beaver}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FOR FSM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{tikz}
 \usetikzlibrary{automata, positioning, arrows}
+\tikzset{
+  ->, % makes the edges directed
+  >=stealth', % makes the arrow heads bold
+  node distance=3cm, % specifies the minimum distance between two nodes. Change if necessary.
+  every state/.style={thick, fill=gray!10}, % sets the properties for each ’state’ node
+  initial text=$ $, % sets the text that appears on the start arrow
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FOR FSM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Sequence Detector]
 {Sequence Detector}
@@ -30,18 +40,20 @@
     }
   \frame{
       \frametitle{Simple Finite State Machine}
-    \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto] 
-     \node[state,initial] (q_0)   {$q_0$}; 
-      \node[state] (q_1) [above right=of q_0] {$q_1$}; 
-     \node[state] (q_2) [below right=of q_0] {$q_2$}; 
-      \node[state,accepting](q_3) [below right=of q_1] {$q_3$};
-      \path[->] 
-      (q_0) edge  node {0} (q_1)
-      edge  node [swap] {1} (q_2)
-      (q_1) edge  node  {1} (q_3)
-      edge [loop above] node {0} ()
-      (q_2) edge  node [swap] {0} (q_3) 
-      edge [loop below] node {1} ();
+      \begin{tikzpicture}
+        \node[state, initial, accepting] (1) {$A$};
+        \node[state, below left of=1] (2) {$B$};
+        \node[state, below right of=2] (3) {$C$};
+        \node[state, above right of=3] (4) {$D$};
+
+        \draw (1) edge[above, bend right, right = 0.1] node{$1/0$} (2)
+        (1) edge[loop above] node{$0/0$} (1)
+        (2) edge[loop left] node{$1/0$} (2)
+        (2) edge[below, bend right, right = 0.1] node{$0/0$} (3)
+        (3) edge[left, bend left,left=0.2] node{$0/0$} (1)
+        (3) edge[below, bend right, right = 0.2] node{$1/0$} (4)
+        (4) edge[below, bend right, right = 0.2] node{$0/0$} (3)
+        (4) edge[right, bend right, right = 0.2] node{$1/1$} (2);
     \end{tikzpicture}
     }
   \frame{
