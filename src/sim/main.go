@@ -4,6 +4,9 @@ import (
   "fmt"
   "math/rand"
   //"time"
+  "os"
+  "io"
+  "strconv"
 )
 
 var possible_input = [2]uint8{0, 1}
@@ -74,13 +77,26 @@ func (s *state) set_output() {
   }
 }
 
+  
+func check(e error) {
+  if e != nil {
+    panic(e)
+  }
+}
+
 func main() {
   s := state{}
   sp := &s
+  var dat_file string = "/home/j43/dev/verilog/sequence_detector/target/signals.dat"
+  f, err := os.Create(dat_file)
+  defer f.Close()
+  check(err)
   sp.init_machine()
   var sim_input uint8
   for {
     sim_input = input()
+    io.WriteString(f, strconv.Itoa(int(sim_input)) + "\n")
+    
     if sp.output == 1 {
       fmt.Println("---------------------------------------")
       fmt.Println("detected")
