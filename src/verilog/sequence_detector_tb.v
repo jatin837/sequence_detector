@@ -24,25 +24,8 @@ integer i;
  end
 
  initial begin
-  // Initialize Inputs
-  sequence_in = 0;
-  reset = 1;
-  // Wait 100 ns for global reset to finish
-  #30;
-      reset = 0;
-  #40;
-  sequence_in = 1;
-  #10;
-  sequence_in = 0;
-  #10;
-  sequence_in = 1; 
-  #20;
-  sequence_in = 0; 
-  #20;
-  sequence_in = 1; 
-  #20;
-  sequence_in = 0;  
-  #20;
+  reset = 0;
+  //append signals from you go code here for every 10 ps interval
  end
  initial begin
      $monitor("At time = %t, Detector = %d\n", $time, detector_out);
