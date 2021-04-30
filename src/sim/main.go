@@ -3,7 +3,7 @@ package main
 import (
   "fmt"
   "math/rand"
-  //"time"
+  "time"
   "os"
   "io"
   "strconv"
@@ -94,11 +94,12 @@ func main() {
   sp.init_machine()
   var sim_input uint8
   for {
+    time.Sleep(320*time.Millisecond)
     sim_input = input()
     io.WriteString(f, strconv.Itoa(int(sim_input)) + "\n")
     
     if sp.output == 1 {
-      fmt.Println("---------------------------------------")
+      fmt.Println("\n---------------------------------------")
       fmt.Println("detected")
     }
     fmt.Print(sim_input)
