@@ -2,23 +2,31 @@ SRC=src/
 BUILD=target/
 VCC=iverilog
 LATEXCC=pdflatex
-CODE=code/
+VERILOG=verilog/
+SIM=sim/
+PRESENTATION=presentation/
 
 all: presentation 
 
-presentation: $(SRC)presentation.tex
-	$(LATEXCC) $(SRC)presentation.tex
+presentation: $(SRC)$(PRESENTATION)presentation.tex
+	$(LATEXCC) $(SRC)$(PRESENTATION)presentation.tex
 	mv ./presentation* $(BUILD)
 	mv $(SRC)*.aux $(SRC)*.log $(BUILD)
+	mv *.log $(BUILD)
 
 #state_diag_1011: $(SRC)state_diag_1011.tex
 #	$(LATEXCC) $(SRC)state_diag_1011.tex
 #	mv ./state_diag_1011* $(BUILD)
 
-code: $(SRC)$(CODE)sequence_detector.v $(SRC)$(CODE)sequence_detector_tb.v
-	$(VCC) -o $(BUILD)sequence_detector $(SRC)$(CODE)sequence_detector.v $(SRC)$(CODE)sequence_detector_tb.v
+verilog: $(SRC)$(VERILOG)sequence_detector.v $(SRC)$(VERILOG)sequence_detector_tb.v
+	$(VCC) -o $(BUILD)sequence_detector $(SRC)$(VERILOG)sequence_detector.v $(SRC)$(VERILOG)sequence_detector_tb.v
 
-review: code
+sim: $(SRC)$(SIM)*
+	go build $(SRC)$(SIM)*
+	mv ./main $(BUILD)
+	$(BUILD)main
+
+review: verilog
 	vvp $(BUILD)sequence_detector
 	mv ./*.vcd $(BUILD)
 	gtkwave $(BUILD)*.vcd
