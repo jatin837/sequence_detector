@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-module sequence_detector_1011_tb;
+module tb_Sequence_Detector_Moore_FSM_Verilog;
 
  // Inputs
  reg sequence_in;
@@ -10,7 +10,7 @@ module sequence_detector_1011_tb;
  wire detector_out;
 
  // Instantiate the Sequence Detector using Moore FSM
- sequence_detector_1011 uut (
+ Sequence_Detector_MOORE_Verilog uut (
   .sequence_in(sequence_in), 
   .clock(clock), 
   .reset(reset), 
@@ -48,8 +48,8 @@ integer i;
      $monitor("At time = %t, Detector = %d\n", $time, detector_out);
  end
  initial begin
-     $dumpfile("res_wave_mealy_machine.vcd");
-     $dumpvars(0, sequence_detector_1011_tb);
+     $dumpfile("res_wave_moore_machine.vcd");
+     $dumpvars(0, tb_Sequence_Detector_Moore_FSM_Verilog);
  end
     
 endmodule
