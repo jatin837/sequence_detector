@@ -30,98 +30,64 @@ integer i;
   reset = 0;
   //append signals from you go code here for every 10 ps interval
 
+//--start
 
+#10; sequence_in = 1
+;
 
 #10; sequence_in = 1
 ;
+
 #10; sequence_in = 1
 ;
+
 #10; sequence_in = 1
 ;
-#10; sequence_in = 1
-;
+
 #10; sequence_in = 0
 ;
+
 #10; sequence_in = 1
 ;
+
 #10; sequence_in = 0
 ;
+
 #10; sequence_in = 0
 ;
+
 #10; sequence_in = 0
 ;
+
 #10; sequence_in = 0
 ;
+
 #10; sequence_in = 1
 ;
+
 #10; sequence_in = 0
 ;
+
 #10; sequence_in = 1
 ;
+
 #10; sequence_in = 0
 ;
+
 #10; sequence_in = 0
 ;
+
 #10; sequence_in = 1
 ;
+
 #10; sequence_in = 1
 ;
+
 #10; sequence_in = 1
 ;
-#10; sequence_in = 0
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 0
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 1
-;
-#10; sequence_in = 1
-;end
+//--end
+
+end
  initial begin
      $monitor("At time = %t, Detector = %d\n", $time, detector_out);
  end

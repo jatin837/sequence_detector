@@ -29,10 +29,65 @@ integer i;
   reset = 1;
   // Wait 100 ns for global reset to finish
   #30;
-      reset = 0;
-  
+    reset = 0;
+//--start
 
-  // append Signals here
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+//--end
+
+
    end
  initial begin
      $monitor("At time = %t, Detector = %d\n", $time, detector_out);
