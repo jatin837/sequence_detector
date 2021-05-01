@@ -85,6 +85,165 @@ integer i;
 
 #10; sequence_in = 1
 ;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
+
+#10; sequence_in = 1
+;
+
+#10; sequence_in = 0
+;
 //--end
 
 end
