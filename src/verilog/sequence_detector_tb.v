@@ -19,14 +19,104 @@ module sequence_detector_1011_tb;
 integer i;
  initial begin
     clock = 0;
-    for (i = 0; i <= 40; i = i + 1)
+    for (i = 0; i <= 4000; i = i + 1)
         #5 clock = ~clock;
  end
 
  initial begin
   reset = 0;
   //append signals from you go code here for every 10 ps interval
- end
+
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 0
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;
+#10; sequence_in = 1
+;end
  initial begin
      $monitor("At time = %t, Detector = %d\n", $time, detector_out);
  end
