@@ -24,8 +24,13 @@ integer i;
  end
 
  initial begin
+  sequence_in = 0;
+  reset = 1;
+  #20;
   reset = 0;
   //append signals from you go code here for every 10 ps interval
+
+
 
 #10; sequence_in = 1
 ;

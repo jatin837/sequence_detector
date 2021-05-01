@@ -30,20 +30,10 @@ integer i;
   // Wait 100 ns for global reset to finish
   #30;
       reset = 0;
-  #40;
-  sequence_in = 1;
-  #10;
-  sequence_in = 0;
-  #10;
-  sequence_in = 1; 
-  #20;
-  sequence_in = 0; 
-  #20;
-  sequence_in = 1; 
-  #20;
-  sequence_in = 0;  
-  #20;
- end
+  
+
+  // append Signals here
+   end
  initial begin
      $monitor("At time = %t, Detector = %d\n", $time, detector_out);
  end
