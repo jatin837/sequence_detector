@@ -8,7 +8,7 @@ verilog_files = [os.path.abspath(i) for i in ['./src/moore_impl/main_tb.v', './s
 with open(seq_file, 'r') as f:
     data = toml.loads(f.read())
     sequences = data['sequence']
-    time_period = data['time-period']
+    time_period = data['time_period']
     reset_time = data['reset']*time_period
 
     

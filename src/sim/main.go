@@ -1,20 +1,12 @@
 package main
 
 import (
+  "github.com/pelletier/go-toml"
   "fmt"
-  "math/rand"
   "time"
-  "os"
-  "io"
-  "strconv"
+  "io/ioutil"
 )
 
-var possible_input = [2]uint8{0, 1}
-
-func input() uint8 {
-  var res uint8 = possible_input[rand.Intn(len(possible_input))]
-  return res
-}
 
 type state struct {
   current uint8
@@ -23,9 +15,15 @@ type state struct {
   output uint8
 }
 
+type data struct{
+  sequence []uint8
+  reset int
+  time_period int
+}
+
 func (s *state) init_machine() {
   s.current = 'a'
-  s.input = input()
+  s.input = uint8(0)
   s.set_next_state() // impl a function to set next state
   s.set_output()
 }
@@ -86,25 +84,34 @@ func check(e error) {
 
 func main() {
   s := state{}
+  data := data{}
   sp := &s
-  var dat_file string = "/home/j43/dev/verilog/sequence_detector/target/signals.dat"
-  f, err := os.Create(dat_file)
-  defer f.Close()
-  check(err)
+  var seq_file string = "/home/j43/dev/verilog/sequence_detector/seq.toml"
+  byte_data, err1 := ioutil.ReadFile(seq_file)
+  fmt.Println(string(byte_data))
+  byte_again_data := []byte(string(byte_data))
+  check(err1)
+  fmt.Println("error here -- 1")  
+  toml.Unmarshal(byte_again_data, &data) 
+  fmt.Println("error here -- 2")  
+  inputs := data.sequence
+  fmt.Println(data)
+  fmt.Println("error here -- 3")  
   sp.init_machine()
-  var sim_input uint8
-  for {
+  fmt.Println("error here -- 4")  
+  fmt.Println(inputs)
+  for i := 0; i < len(inputs); i++ {
     time.Sleep(320*time.Millisecond)
-    sim_input = input()
-    io.WriteString(f, strconv.Itoa(int(sim_input)) + "\n")
     
+    fmt.Println("error here -- 5")  
     if sp.output == 1 {
       fmt.Println("\n---------------------------------------")
       fmt.Println("detected")
     }
-    fmt.Print(sim_input)
-    sp.go_forward(sim_input)
+    fmt.Print(inputs[i])
+    sp.go_forward(inputs[i])
     
+  fmt.Println("error here -- final")  
   }    
   
 }

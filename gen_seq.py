@@ -22,7 +22,7 @@ seq_file = os.path.abspath("./seq.toml")
 data = {
     "sequence" :    [random.choice([0, 1]) for i in range(int(args['number']))],
     "reset" :       int(args['reset']),
-    "time-period" : int(args['tick'])
+    "time_period" : int(args['tick'])
 }
 
 with open(seq_file, 'w') as f:
