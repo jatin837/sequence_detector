@@ -10,7 +10,7 @@ module tb_Sequence_Detector_Moore_FSM_Verilog;
  wire detector_out;
 
  // Instantiate the Sequence Detector using Moore FSM
- Sequence_Detector_MOORE_Verilog uut (
+ Sequence_Detector_MOORE uut (
   .sequence_in(sequence_in), 
   .clock(clock), 
   .reset(reset), 
@@ -27,9 +27,8 @@ integer i;
   // Initialize Inputs
   sequence_in = 0;
   reset = 1;
-  // Wait 100 ns for global reset to finish
-  #30;
-    reset = 0;
+  #20;
+  reset = 0;
 //--start
 
 #10; sequence_in = 1

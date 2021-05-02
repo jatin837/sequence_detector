@@ -1,20 +1,23 @@
-module Sequence_Detector_MOORE_Verilog(sequence_in,clock,reset,detector_out
-    );
+module Sequence_Detector_MOORE(sequence_in,
+  clock,
+  reset,
+  detector_out
+);
 input clock; // clock signal
 input reset; // reset input
 input sequence_in; // binary input
 output reg detector_out; // output of the sequence detector
-parameter  Zero=3'b000, // "Zero" State
-  One=3'b001, // "One" State
-  OneZero=3'b011, // "OneZero" State
-  OneZeroOne=3'b010, // "OnceZeroOne" State
-  OneZeroOneOne=3'b110;// "OneZeroOneOne" State
+parameter  A=3'b000, // "Zero" State
+  B=3'b001, // "One" State
+  C=3'b010, // "OneZero" State
+  D=3'b011, // "OneZeroOne" State
+  E=3'b100;// "OneZeroOneOne" State
 reg [2:0] current_state, next_state; // current state and next state
 // sequential memory of the Moore FSM
 always @(posedge clock, posedge reset)
 begin
  if(reset==1) 
- current_state <= Zero;// when reset=1, reset the state of the FSM to "Zero" State
+ current_state <= A;// when reset=1, reset the state of the FSM to "A" State
  else
  current_state <= next_state; // otherwise, next state
 end 
@@ -23,37 +26,37 @@ end
 always @(current_state,sequence_in)
 begin
  case(current_state) 
- Zero:begin
+ A:begin
   if(sequence_in==1)
-   next_state = One;
+   next_state = B;
   else
-   next_state = Zero;
+   next_state = A;
  end
- One:begin
+ B:begin
   if(sequence_in==0)
-   next_state = OneZero;
+   next_state = C;
   else
-   next_state = One;
+   next_state = B;
  end
- OneZero:begin
+ C:begin
   if(sequence_in==0)
-   next_state = Zero;
+   next_state = A;
   else
-   next_state = OneZeroOne;
+   next_state = D;
  end 
- OneZeroOne:begin
+ D:begin
   if(sequence_in==0)
-   next_state = OneZero;
+   next_state = C;
   else
-   next_state = OneZeroOneOne;
+   next_state = E;
  end
- OneZeroOneOne:begin
+ E:begin
   if(sequence_in==0)
-   next_state = OneZero;
+   next_state = C;
   else
-   next_state = One;
+   next_state = B;
  end
- default:next_state = Zero;
+ default:next_state = A;
  endcase
 end
 // combinational logic to determine the output
@@ -61,11 +64,11 @@ end
 always @(current_state)
 begin 
  case(current_state) 
- Zero:   detector_out = 0;
- One:   detector_out = 0;
- OneZero:  detector_out = 0;
- OneZeroOne:  detector_out = 0;
- OneZeroOneOne:  detector_out = 1;
+ A:   detector_out = 0;
+ B:   detector_out = 0;
+ C:  detector_out = 0;
+ D:  detector_out = 0;
+ E:  detector_out = 1;
  default:  detector_out = 0;
  endcase
 end 
