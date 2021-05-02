@@ -25,10 +25,12 @@ for verilog_file in verilog_files:
         file_code[for_start + 1] = f'#{time_period/2} clock = ~clock;\n'
 
         if end == start + 1:
+            file_code[start] += f'reset = 1;\n#{reset_time};\nreset = 0;\n'
             for sequence_in in sequences:
                 file_code[start] += f"\n#{time_period}; " + f'sequence_in = {sequence_in};\n'
         else :
             del file_code[start+1:end]
+            file_code[start] += f'reset = 1;\n#{reset_time};\nreset = 0;\n'
             for sequence_in in sequences:
                 file_code[start] += f"\n#{time_period}; " + f'sequence_in = {sequence_in};\n'
 

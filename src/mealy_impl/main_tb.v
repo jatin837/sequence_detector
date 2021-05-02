@@ -25,13 +25,13 @@ for (i = 0; i <= 1040; i = i+1)
 
  end
  initial begin
-  sequence_in = 0;
-  reset = 1;
-  #20;
-  reset = 0;
-  //append signals from you go code here for every 10 ps interval
+
+sequence_in = 0;
 
 //--start
+reset = 1;
+#45;
+reset = 0;
 
 #15; sequence_in = 0;
 
