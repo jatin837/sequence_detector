@@ -74,7 +74,7 @@ func main() {
   var state state = state{}
   sp := &state
 
-  fmt.Printf("input signals lenght = %d\n\n\n", len(inputs))
+  fmt.Printf("input signals length = %d\n\n\n", len(inputs))
   time.Sleep(3200*time.Millisecond)
   fmt.Printf("------------------begin---------------\n\n\n")
 
