@@ -3,7 +3,6 @@ BUILD=target/
 VCC=iverilog
 LATEXCC=pdflatex
 VERILOG=verilog/
-SIM=sim/
 PRESENTATION=presentation/
 
 all: presentation 
@@ -22,14 +21,14 @@ verilog: $(SRC)$(VERILOG)sequence_detector.v $(SRC)$(VERILOG)sequence_detector_t
 	$(VCC) -o $(BUILD)sequence_detector_mealy_machine $(SRC)$(VERILOG)sequence_detector.v $(SRC)$(VERILOG)sequence_detector_tb.v
 	$(VCC) -o $(BUILD)sequence_detector_moore_machine $(SRC)$(VERILOG)sequence_detector_moore.v $(SRC)$(VERILOG)sequence_detector_moore_tb.v
 
-sim: $(SRC)$(SIM)*
-	go build $(SRC)$(SIM)*
-	mv ./main $(BUILD)
+mealy: $(SRC)mealy_impl/main.go $(SRC)mealy_impl/main.v $(SRC)mealy_impl/main_tb.v
+	go build $(SRC)mealy_impl/main.go 
+	mv main $(BUILD)
 
+moore: $(SRC)moore_impl/main.go $(SRC)moore_impl/main.v $(SRC)moore_impl/main_tb.v
+	go build $(SRC)moore_impl/main.go 
+	mv main $(BUILD)
 run-sim: $(BUILD)main
-	$(BUILD)main
-
-
+	./$(BUILD)main
 clean:
 	rm ./target/*
-

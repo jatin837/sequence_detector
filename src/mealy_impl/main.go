@@ -2,6 +2,7 @@ package main
 
 import (
   "github.com/pelletier/go-toml"
+  "color"
   "fmt"
   "time"
 )
@@ -73,10 +74,12 @@ func (s *state) go_forward(input int64){
 func main() {
   var state state = state{}
   sp := &state
+  d := color.New(color.FgRed, color.Bold)
+  a := color.New(color.FgBlue, color.Bold)
 
   fmt.Printf("input signals length = %d\n\n\n", len(inputs))
   time.Sleep(3200*time.Millisecond)
-  fmt.Printf("------------------begin---------------\n\n\n")
+  a.Printf("------------------begin---------------\n\n\n")
 
 
   sp.init_machine()
@@ -85,13 +88,13 @@ func main() {
     time.Sleep(320*time.Millisecond)
     sp.go_forward(inputs[i])
     if state.output == 1 {
-      fmt.Printf("input = %d\t\t\t\t\t%s\n", inputs[i], "detected")
+      d.Printf("input = %d\t\t\t\t\t%s\n", inputs[i], "detected")
       time.Sleep(3200*time.Millisecond)
 
     } else {
-      fmt.Printf("input = %d\t\t\t\t\t%s\n", inputs[i], "waiting...")
+      color.Cyan("input = %d\t\t\t\t\t%s\n", inputs[i], "waiting...")
     }
   }
-  fmt.Printf("------------------end---------------\n\n\n")
+  a.Printf("------------------end---------------\n\n\n")
 }
 

@@ -13,6 +13,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-ri", "--reset", required=True, help="set reset interval")
 ap.add_argument("-ti", "--tick", required=True, help="time interval for clock")
 ap.add_argument("-n", "--number", required=True, help="number of sequences")
+
 args = vars(ap.parse_args())
 if int(args['reset']) > 5:
     print("reset must be atmost 5 ticks")
