@@ -4,7 +4,30 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FOR FSM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{tikz}
-\usepackage{verbatim}
+\usepackage{animate}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Go,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 \usetikzlibrary{automata, positioning, arrows}
 \tikzset{
   ->, % makes the edges directed
@@ -21,7 +44,7 @@
 \institute{DTU}
 \author{Jatin Pandey \& kumood}
 \logo{
-  \includegraphics[height=1cm]{./src/presentation/logo.png}
+  \includegraphics[height=1cm]{./static/logo.png}
 }
 \begin{document}
   \frame {
@@ -63,7 +86,90 @@
       Generating State Table without outputs
       \include{./src/presentation/state_table_1011(moore)}
   }
-  \frame{
-    \frametitle{Simulating Moores State Machine}
-   }
+ \begin{frame}[fragile]
+  \frametitle{Code for simulating Moore Machine}
+  \begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+    func (s *state) set_current_state() {
+      //function to set current state 
+    }
+    
+  \end{lstlisting}
+
+\end{frame} 
+
+\begin{frame}[fragile]
+  \frametitle{Code for simulating Moore Machine}
+\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+  input := s.input 
+  var res uint8
+  switch s.current {
+    // state machine logic handler 
+  }
+  s.current = res
+}
+   
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Code for simulating Moore Machine}
+\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+    case 'a':
+      if input == 0 {
+        res = 'a'
+      } else {
+        res = 'b'
+      }
+    case 'b':
+      if input == 0 {
+        res = 'c'
+      } else {
+        res = 'b'
+      }
+    case 'c':
+      if input == 0 {
+        res = 'a'
+      } else {
+        res = 'd'
+      }
+  
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Code for simulating Moore Machine}
+\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+    case 'd':
+      if input == 0 {
+        res = 'c'
+      } else {
+        res = 'e'
+      }
+    case 'e':
+      if input == 0 {
+        res = 'c'
+      } else {
+        res = 'b'
+      }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Result of Mealy FSM Simulation}
+  \animategraphics[loop,controls,width=\linewidth]{5}{./static/mealy_impl_sim-}{0}{129}
+\end{frame}
+
+\begin{frame}{Result of Moore FSM Simulation}
+  \animategraphics[loop,controls,width=\linewidth]{5}{./static/moore_impl_sim-}{0}{104}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Final Results(Mealy Implementation)}
+    \includegraphics[width=0.65\textwidth, height=0.85\textheight]{./static/res_mealy_sim.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Final Results(Moores Implementation)}
+    \includegraphics[width=0.65\textwidth, height=0.85\textheight]{./static/sim_res_moore.png}
+\end{frame}
+
 \end{document}
