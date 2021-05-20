@@ -1,4 +1,5 @@
 target/*
+src/presentation/*.aux
 *.asc
 *.ods
 *.vcd

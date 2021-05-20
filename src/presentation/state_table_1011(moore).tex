@@ -1,0 +1,20 @@
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor[HTML]{FD6864} 
+Current State & Input & Next State \\ \hline
+A             & 0     & A          \\ \hline
+A             & 1     & B          \\ \hline
+B             & 0     & C          \\ \hline
+B             & 1     & B          \\ \hline
+C             & 0     & A          \\ \hline
+C             & 1     & D          \\ \hline
+D             & 0     & C          \\ \hline
+D             & 1     & E          \\ \hline
+E             & 0     & C          \\ \hline
+E             & 1     & B          \\ \hline
+\end{tabular}
+\end{table}
