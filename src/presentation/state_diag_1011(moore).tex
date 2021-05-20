@@ -1,0 +1,23 @@
+\begin{tikzpicture}
+    % tikz code goes here
+
+    \node[state, initial, accepting] (1) {$A = 0$};
+    \node[state, below right of=1] (2) {$B = 0$};
+    \node[state, below left of=1] (5) {$E = 1$};
+    \node[state, below of=2] (3) {$C = 0$};
+    \node[state, below of=5] (4) {$D = 0$};
+
+   \draw (1) edge[above] node{$1$} (2)
+   (1) edge[loop right] node{$0$} (1)
+   (2) edge[loop right] node{$1$} (2)
+   (2) edge[right] node{$0$} (3)
+   (3) edge[right] node{$0$} (1)
+   (3) edge[below] node{$1$} (4)
+   (4) edge[right, bend right] node{$0$} (3)
+   (4) edge[right] node{$1$} (5)
+   (5) edge[above] node{$1$} (2)
+   (5) edge[above] node{$0$} (3);
+        
+\end{tikzpicture}
+
+
