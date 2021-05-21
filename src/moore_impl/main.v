@@ -1,4 +1,4 @@
-module Sequence_Detector_MOORE(sequence_in,
+module main(sequence_in,
   clock,
   reset,
   detector_out
