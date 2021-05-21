@@ -63,18 +63,6 @@
     \end{itemize}
   }
   \frame{
-    \frametitle{Simple Finite State Machine for Mealy Implementation}
-    \begin{figure}[!h]
-      \centering
-    \include{./src/presentation/state_diag_1011(mealy)}
-    \end{figure}
-  }
-  \frame{
-    \frametitle{State Table for Mealy Machine Implementation}
-    Generating State Table with outputs
-    \include{./src/presentation/state_table_1011(mealy)}
-  }
-  \frame{
     \frametitle{Simple Finite State Machine for Moore Implementation}
     \begin{figure}[!h]
     \centering
@@ -154,18 +142,8 @@
   \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Simulating Mealy FSM}
-  \animategraphics[loop,controls,width=\linewidth]{5}{./static/mealy_impl_sim-}{0}{129}
-\end{frame}
-
 \begin{frame}{Simulating Moore FSM}
   \animategraphics[loop,controls,width=\linewidth]{5}{./static/moore_impl_sim-}{0}{104}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Final Results(Mealy Implementation)}
-  \centering
-  \includegraphics[width=0.65\textwidth, height=0.85\textheight]{./static/res_mealy_sim.png}
 \end{frame}
 
 \begin{frame}
@@ -179,6 +157,31 @@
   \centering
   \includegraphics[width=0.85\textwidth, height=0.65\textheight]{./static/res_wave_moore.png}
 \end{frame}
+
+  \frame{
+    \frametitle{Simple Finite State Machine for Mealy Implementation}
+    \begin{figure}[!h]
+      \centering
+    \include{./src/presentation/state_diag_1011(mealy)}
+    \end{figure}
+  }
+  \frame{
+    \frametitle{State Table for Mealy Machine Implementation}
+    Generating State Table with outputs
+    \include{./src/presentation/state_table_1011(mealy)}
+  }
+  
+\begin{frame}{Simulating Mealy FSM}
+  \animategraphics[loop,controls,width=\linewidth]{5}{./static/mealy_impl_sim-}{0}{129}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Final Results(Mealy Implementation)}
+  \centering
+  \includegraphics[width=0.65\textwidth, height=0.85\textheight]{./static/res_mealy_sim.png}
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Wave form (Mealys Implementation)}
