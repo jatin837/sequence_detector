@@ -170,7 +170,61 @@
     Generating State Table with outputs
     \include{./src/presentation/state_table_1011(mealy)}
   }
+  \begin{frame}[fragile]
+  \frametitle{Code for simulating Mealy Machine}
+  \begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+    func (s *state) set_next_state() {
+      //function to set next state according to current input
+    }
+    
+  \end{lstlisting}
+
+\end{frame} 
+
+\begin{frame}[fragile]
+  \frametitle{Code for simulating Mealy Machine}
+\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+    var res uint8 
+    switch s.current {
+      case 'a':
+        if s.input == 0 {
+          res = 'a'
+        } else{
+          res = 'b'
+        }
+      case 'b':
+        if s.input == 0 {
+          res = 'c'
+        } else{
+          res = 'b'
+        }
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Code for simulating Mealy Machine}
+\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+    case 'c':
+      if s.input == 0 {
+        res = 'a'
+      } else{
+        res = 'd'
+      }
+    case 'd':
+      if s.input == 0 {
+        res = 'c'
+      } else{
+        res = 'b'
+      }
+  }
+  s.next = res
+}
   
+  \end{lstlisting}
+\end{frame}
+
+
 \begin{frame}{Simulating Mealy FSM}
   \animategraphics[loop,controls,width=\linewidth]{5}{./static/mealy_impl_sim-}{0}{129}
 \end{frame}
