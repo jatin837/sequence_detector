@@ -7,13 +7,14 @@
 \usepackage{animate}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{setspace}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-  language=Go,
+  language=C,
   aboveskip=3mm,
   belowskip=3mm,
   showstringspaces=false,
@@ -39,21 +40,50 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FOR FSM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title[Sequence Detector]
-{Sequence Detector}
-\subtitle{DCS Final Presentation}
-\institute{DTU}
-\author{Jatin Pandey \& kumood}
+{Designing a Sequence Detector using Verilog HDL}
+\subtitle{DCS MTE Final Presentation}
+\author{Jatin Pandey(2k19/EE/125) \& kumood(2k19/EE/143)}
 \logo{
   \includegraphics[height=1cm]{./static/logo.png}
 }
 \begin{document}
   \frame {
-      \titlepage
+      %\titlepage
+      \maketitle
     }
+  \begin{frame}{Itemize}
+    \frametitle{Table Of Contents}
+  \begin{itemize}
+      \item{What Is a Sequence Detector?}
+      \item{Type of Sequence Detectors}
+      \item{AIM of this project}
+      \item{Implementation Methods}
+      \item{Moore's Finite State Machine Implementation}
+      \item{Mealy's Finite State Machine Implementation}
+      \item{References}
+  \end{itemize}
+  \end{frame}
   \frame {
-      \frametitle{What is a Sequence Detector?}
-      A sequence detector accepts as input a string of bits: either 0 or 1.   Its output goes to 1 when a target sequence has been detected.
-    }
+    \frametitle{What is a Sequence Detector?}
+    A sequence detector accepts as input a string of bits: either 0 or 1.\\
+    Its output goes to 1 when a target sequence has been detected. 
+    \begin{spacing}{2}
+      \textbf{Example input/output sequences} \\
+    \end{spacing}
+      \begin{itemize}
+        \item{
+          \hspace{0.5cm}Nth one detector, n=2\\ 
+          \hspace{0.5cm}Input:  0 0 1 1 1 0 0 1 0 1 1 1 0 0 0 1\\
+          \hspace{0.5cm}Output: 0 0 0 1 0 0 0 1 0 0\\
+        }
+        \item{
+          \hspace{0.5cm}011 pattern detector\\
+          \hspace{0.5cm}Input:  0 0 1 1 1 0 0 1 0 1 1 1 0 0 0 1\\
+          \hspace{0.5cm}Output: 0 0 0 1 0 0 0\\
+        }
+      \end{itemize}
+ 
+      }
   \frame{
     \frametitle{Types of Sequence Detector}
     There are two basic types of Sequence Detector
@@ -76,7 +106,7 @@
   }
  \begin{frame}[fragile]
   \frametitle{Code for simulating Moore Machine}
-  \begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+  \begin{lstlisting}[language=C,keywordstyle=\bf,stringstyle=\it]
     func (s *state) set_current_state() {
       //function to set current state 
     }
@@ -87,7 +117,7 @@
 
 \begin{frame}[fragile]
   \frametitle{Code for simulating Moore Machine}
-\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+\begin{lstlisting}[language=C,keywordstyle=\bf,stringstyle=\it]
   input := s.input 
   var res uint8
   switch s.current {
@@ -101,7 +131,7 @@
 
 \begin{frame}[fragile]
   \frametitle{Code for simulating Moore Machine}
-\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+\begin{lstlisting}[language=C,keywordstyle=\bf,stringstyle=\it]
     case 'a':
       if input == 0 {
         res = 'a'
@@ -126,7 +156,7 @@
 
 \begin{frame}[fragile]
   \frametitle{Code for simulating Moore Machine}
-\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+\begin{lstlisting}[language=C,keywordstyle=\bf,stringstyle=\it]
     case 'd':
       if input == 0 {
         res = 'c'
@@ -172,7 +202,7 @@
   }
   \begin{frame}[fragile]
   \frametitle{Code for simulating Mealy Machine}
-  \begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+  \begin{lstlisting}[language=C,keywordstyle=\bf,stringstyle=\it]
     func (s *state) set_next_state() {
       //function to set next state according to current input
     }
@@ -183,7 +213,7 @@
 
 \begin{frame}[fragile]
   \frametitle{Code for simulating Mealy Machine}
-\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+\begin{lstlisting}[language=C,keywordstyle=\bf,stringstyle=\it]
     var res uint8 
     switch s.current {
       case 'a':
@@ -204,7 +234,7 @@
 
 \begin{frame}[fragile]
   \frametitle{Code for simulating Mealy Machine}
-\begin{lstlisting}[language=go,keywordstyle=\bf,stringstyle=\it]
+\begin{lstlisting}[language=C,keywordstyle=\bf,stringstyle=\it]
     case 'c':
       if s.input == 0 {
         res = 'a'
